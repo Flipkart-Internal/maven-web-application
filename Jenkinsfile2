@@ -33,18 +33,19 @@ sh "${mavenHome}/bin/mvn deploy"
 	sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.3.90:/opt/apache-tomcat-9.0.69/webapps/"
 	}
 
+}
 }//try closing
-
 catch(e){
 currentBuild.result = "FAILURE"
-}
+}//catch block closing
 finally{
 sendslacknotifications(currentBuild.result)
 }//finally closing
 
 }//node closing
 
-def jenkinsbuildnotifications(String buildStatus = 'STARTED') {
+
+def sendslacknotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
@@ -67,4 +68,5 @@ def jenkinsbuildnotifications(String buildStatus = 'STARTED') {
   }
 
   // Send notifications
-  slackSend (color: colorCode, message: summary)
+  slackSend (color: colorCode, message: summary, channel: "#walmart")
+}
