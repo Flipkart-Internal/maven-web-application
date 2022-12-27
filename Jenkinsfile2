@@ -44,7 +44,7 @@ sendslacknotifications(currentBuild.result)
 
 }//node closing
 
-def sendslacknotifications(String buildStatus = 'STARTED') {
+def jenkinsbuildnotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
