@@ -13,7 +13,7 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 
 try{
 
-sendslacknotifications(currentBuild.result)
+sendslacknotifications("STARTED")
 
 stage('CheckoutCode'){git credentialsId: 'a72db654-9e4e-4794-985e-f2efcf142040', url: 'https://github.com/Flipkart-Internal/maven-web-application.git'
 }
